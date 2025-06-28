@@ -1,12 +1,30 @@
-<script module>
+<script module lang="ts">
 	import Class from '@components/Class/Class.svelte';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
+		import { ProperType } from '@components/Class/constance.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Class Diagram/Class',
 		component: Class,
 		tags: ['autodocs']
 	});
+
+	const args: ClassProps = {
+		class: {
+			name: 'Test Class',
+			properties: [
+				{ name: 'property1', type: ProperType.String, access: 'public' },
+				{ name: 'property2', type: ProperType.Number, access: 'private', nullable: true },
+				{ name: 'property3', type: ProperType.Boolean, access: 'protected' },
+				{ name: 'property4', type: ProperType.Object},
+				{ name: 'property5', type: ProperType.Array, access: 'private' }
+			],
+			methods: []
+		}
+	};
 </script>
 
-<Story name="Primary" />
+<Story 
+	name="Primary"
+	args={args}
+/>

@@ -1,3 +1,41 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+
+/* The theme variables are defining in this file */
+:root {
+  /* Set base rem for the theme */
+  --base-rem: 12px;
+
+  /* Set listing or row variables */
+  --odd-row-bg: #dfe0e1;
+  --even-row-bg: #eceff26b;
+}
+
+html {
+  font-size: var(--base-rem);
+}
+
+.card {
+  /* Card variables */
+  --card-border-color: #e5e7eb;
+  --card-border-radius: 0.7rem; /* 8px */
+  --card-border-width: 1px;
+  --card-padding: 1rem 0;
+
+  --card-spacer-x: 1rem;
+  --card-spacer-y: 0.5rem;
+
+  border-color: var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  border-width: var(--card-border-width);
+  font-size: calc(var(--base-rem ) * 1.25);
+  width: fit-content;
+
+  .card-body {
+    padding: var(--card-spacer-x) var(--card-spacer-y);
+  }
+
+  .list-group-item:nth-last-of-type(1) {
+    border-bottom-left-radius: calc(var(--card-border-radius) - 1px);
+    border-bottom-right-radius: calc(var(--card-border-radius) - 1px);
+  }
+}
