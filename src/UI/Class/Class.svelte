@@ -42,14 +42,18 @@
 		<ul class="list-group list-group-flush">
 			{#each props.class.properties as property: ClassProperty}
 				<li class="list-group-item">
-					<div class="access">{getAccessSign(property.access)}</div>
-					<div class="type">
-						<p>{getTypeSign(property.type)}</p>
-						<p>{':'}</p>
-					</div>
-					<div class="name">
-						<p>{property.name}</p>
-					</div>
+					{#if props.renderProperty}
+						{@render props.renderProperty(property)}
+					{:else}
+						<div class="access">{getAccessSign(property.access)}</div>
+						<div class="type">
+							<p>{getTypeSign(property.type)}</p>
+							<p>{':'}</p>
+						</div>
+						<div class="name">
+							<p>{property.name}</p>
+						</div>
+					{/if}
 				</li>
 			{/each}
 		</ul>

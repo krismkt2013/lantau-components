@@ -22,9 +22,36 @@
 			methods: []
 		}
 	};
+
+	const args2 = {
+		...args,
+	};
 </script>
 
 <Story 
 	name="Primary"
 	args={args}
 />
+
+{#snippet renderProperty(property: ClassProperty)}
+	<div>
+		<div class="access">{property.access}</div>
+		<div class="type">
+			<p>{property.type}</p>
+			<p>{':'}</p>
+		</div>
+		<div class="name">
+			<p>{property.name}</p>
+		</div>
+	</div>
+{/snippet}
+
+<Story 
+	name="Secondary"
+	args={{
+		...args2,
+		renderProperty: renderProperty,
+	}}
+/>
+
+

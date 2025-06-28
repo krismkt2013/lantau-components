@@ -22,4 +22,5 @@ type Class = {
 
 type ClassProps = BaseComponentProps<{
     class: Class;
+    renderProperty?: (property: ClassProperty) => JSX.Element;
 }>;
