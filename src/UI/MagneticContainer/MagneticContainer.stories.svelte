@@ -1,7 +1,7 @@
 <script module lang="ts">
 	import MagneticContainer from './MagneticContainer.svelte';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { Shape } from './constance.svelte';
+	import { SHAPE } from './constance.svelte';
 
 	const { Story } = defineMeta({
 		title: 'UI/MagneticContainer',
@@ -12,7 +12,7 @@
 
 <Story name="Rectangle">
 	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
-		<MagneticContainer shape={Shape.Rectangle}>
+		<MagneticContainer shape={SHAPE.RECTANGLE}>
 			<button>Hover over me</button>
 		</MagneticContainer>
 	</div>
@@ -20,7 +20,23 @@
 
 <Story name="Circle">
 	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
-		<MagneticContainer shape={Shape.Circle}>
+		<MagneticContainer shape={SHAPE.CIRCLE}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
+<Story name="MagneticRectangle">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.RECTANGLE} magnetic={true}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
+<Story name="MagneticCircle">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.CIRCLE} magnetic={true}>
 			<button>Hover over me</button>
 		</MagneticContainer>
 	</div>

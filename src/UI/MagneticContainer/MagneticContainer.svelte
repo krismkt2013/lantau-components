@@ -1,9 +1,19 @@
 <script lang="ts">
-	import { Shape } from './constance.svelte';
+	import { SHAPE } from '@components/MagneticContainer/constance.svelte';
+	import Rectangle from '@components/MagneticContainer/shapes/rectangle.svelte'
+	import Circle from '@components/MagneticContainer/shapes/circle.svelte';
+	import '@components/MagneticContainer/MagneticContainer.css';
 
-	export let shape: Shape = Shape.Rectangle;
+	export let shape: SHAPE = SHAPE.RECTANGLE;
 	export let width: number = 150;
 	export let height: number = 150;
+	export let magnetic: boolean = true;
+
+
+	const shapeComponents = {
+		[SHAPE.RECTANGLE]: Rectangle,
+		[SHAPE.CIRCLE]: Circle
+	};
 
 	let dragging = false;
 	let initialX: number;
@@ -43,28 +53,15 @@
 </script>
 
 <div
-	class="{shape}"
+	class="{shape} container"
+	class:magnetic
 	style="width: {width}px; height: {height}px;"
 	on:mousedown={handleMouseDown}
-	role="button"
+	role="cell"
 	tabindex="0"
 >
 	<slot />
+	{#if magnetic}
+		<svelte:component this={shapeComponents[shape]} />
+	{/if}
 </div>
-
-<style>
-	div {
-		border: 1px solid #ccc;
-		padding: 20px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: move;
-	}
-	.rectangle {
-		border-radius: 10px;
-	}
-	.circle {
-		border-radius: 50%;
-	}
-</style>
