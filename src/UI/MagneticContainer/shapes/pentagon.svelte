@@ -12,7 +12,7 @@
 			{ x: 18, y: 100 },
 			{ x: 0, y: 38 }
 		];
-		const newPoints: { x: number; y: number; id: number }[] = [];
+		const newPoints: { x: number; y: number; id: string }[] = [];
 		const pointsPerSide = Math.floor(NUM_POINTS / 5);
 		const remainder = NUM_POINTS % 5;
 
@@ -24,7 +24,7 @@
 				const t = j / numSidePoints;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				newPoints.push({ x, y, id: i });
+				newPoints.push({ x, y, id: `p-point-${i}-${j}` });
 			}
 		}
 		return newPoints;

@@ -11,7 +11,7 @@
 			{ x: 50, y: 100 },
 			{ x: 0, y: 50 }
 		];
-		const points: { x: number; y: number; id: number }[] = [];
+		const points: { x: number; y: number; id: string }[] = [];
 		const pointsPerSide = NUM_POINTS / 4;
 
 		for (let i = 0; i < 4; i++) {
@@ -21,7 +21,7 @@
 				const t = j / pointsPerSide;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				points.push({ x, y, id: i });
+				points.push({ x, y, id: `d-point-${i}-${j}` });
 			}
 		}
 		return points;

@@ -5,12 +5,12 @@
 
 	//*** start of derived state ***//
 	const circlePoints = $derived.by(() => {
-		const points: { x: number; y: number; id: number }[] = [];
+		const points: { x: number; y: number; id: string }[] = [];
 		for (let i = 0; i < NUM_POINTS; i++) {
 			const angle = (i / NUM_POINTS) * 2 * Math.PI;
 			const x = 50 + 50 * Math.cos(angle);
 			const y = 50 + 50 * Math.sin(angle);
-			points.push({ x, y, id: i });
+			points.push({ x, y, id: `c-point-${i}` });
 		}
 		return points;
 	});
