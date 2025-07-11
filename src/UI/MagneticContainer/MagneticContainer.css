@@ -24,6 +24,10 @@
 	clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
+.pentagon {
+	clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
 .magnetic-points {
 	position: absolute;
 	top: 0;
@@ -33,7 +37,7 @@
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 0.2s ease-in-out;
-	transform: scale(0.98);
+	transform: scale(0.97);
 }
 
 .container.magnetic:hover .magnetic-points {
