@@ -65,16 +65,16 @@ Based on the patterns established in the `MagneticLine` component, the following
 
 Each component should be self-contained within its own directory under `src/UI/`. The structure should be as follows:
 
--   `ComponentName/`
-    -   `ComponentName.svelte`: The main Svelte component file containing the script logic and template.
-    -   `ComponentName.css`: The stylesheet for the component.
-    -   `types.d.ts`: TypeScript definitions for the component's props.
+- `ComponentName/`
+  - `ComponentName.svelte`: The main Svelte component file containing the script logic and template.
+  - `ComponentName.css`: The stylesheet for the component.
+  - `types.d.ts`: TypeScript definitions for the component's props.
 
 #### 2. TypeScript and Svelte 5
 
--   **TypeScript:** All components must use TypeScript (`<script lang="ts">`).
--   **Type Definitions:** Define component props in a dedicated `types.d.ts` file and import the type. This keeps the component file clean and types reusable.
--   **Svelte 5 Runes:** Utilize Svelte 5 runes for state and reactivity (`$props`, `$state`, `$derived`).
+- **TypeScript:** All components must use TypeScript (`<script lang="ts">`).
+- **Type Definitions:** Define component props in a dedicated `types.d.ts` file and import the type. This keeps the component file clean and types reusable.
+- **Svelte 5 Runes:** Utilize Svelte 5 runes for state and reactivity (`$props`, `$state`, `$derived`).
 
 #### 3. Component Script Organization
 
@@ -141,26 +141,26 @@ Use the following comment style to delineate each section:
 
 #### 4. Props Best Practices
 
--   **Documentation:** Use JSDoc to document all props, explaining their purpose and type.
--   **Defaults:** Provide sensible default values for all optional props.
--   **Callbacks:** Use function props (e.g., `onPointsChange`) to communicate events and data back up to parent components.
+- **Documentation:** Use JSDoc to document all props, explaining their purpose and type.
+- **Defaults:** Provide sensible default values for all optional props.
+- **Callbacks:** Use function props (e.g., `onPointsChange`) to communicate events and data back up to parent components.
 
 #### 5. Styling
 
--   Keep styles in a separate `.css` file and link to it using the `<style src="./ComponentName.css"></style>` tag at the bottom of the Svelte file. This is the preferred method for component styling.
--   Use clear and descriptive CSS class names to avoid conflicts.
+- Keep styles in a separate `.css` file and link to it using the `<style src="./ComponentName.css"></style>` tag at the bottom of the Svelte file. This is the preferred method for component styling.
+- Use clear and descriptive CSS class names to avoid conflicts.
 
 #### 6. Lifecycle and Memory Management
 
--   Always clean up side effects in the `onDestroy` lifecycle hook. This includes removing global event listeners or clearing timers (`setInterval`).
+- Always clean up side effects in the `onDestroy` lifecycle hook. This includes removing global event listeners or clearing timers (`setInterval`).
 
 #### 7. Accessibility (A11y)
 
--   Ensure all interactive elements are accessible. If using non-semantic elements like `div` for buttons, add `role="button"` and `tabindex="0"`.
+- Ensure all interactive elements are accessible. If using non-semantic elements like `div` for buttons, add `role="button"` and `tabindex="0"`.
 
 #### 8. Imports
 
--   **Path Aliases:** Use the `@components/` path alias when importing any resource (such as components, modules, or type definitions) from within the `src/UI` directory. This improves readability and consistency. For example, instead of `import MyComponent from '../MyComponent/MyComponent.svelte'`, use `import MyComponent from '@components/MyComponent/MyComponent.svelte'`.
+- **Path Aliases:** Use the `@components/` path alias when importing any resource (such as components, modules, or type definitions) from within the `src/UI` directory. This improves readability and consistency. For example, instead of `import MyComponent from '../MyComponent/MyComponent.svelte'`, use `import MyComponent from '@components/MyComponent/MyComponent.svelte'`.
 
 ## Project TODO List
 

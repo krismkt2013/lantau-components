@@ -8,5 +8,5 @@ This document records significant decisions made during the project's lifecycle.
 
 ## Decisions
 
-*   
-*   [2025-07-11 22:01:30] - The `README.md` file is established as the single source of truth for all project guidelines, including coding standards, file structure, and best practices. All development must adhere to the instructions outlined in this file to ensure consistency and maintain code quality.
+*
+* [2025-07-11 22:01:30] - The `README.md` file is established as the single source of truth for all project guidelines, including coding standards, file structure, and best practices. All development must adhere to the instructions outlined in this file to ensure consistency and maintain code quality.

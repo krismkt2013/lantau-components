@@ -1,8 +1,8 @@
 type BaseComponentClassProps<T> = {
-    containerStyles?: {[key: string]: string };
+	containerStyles?: { [key: string]: string };
 } & T;
 
 type BaseComponentProps<T> = {
-    key?: string;
-    styles?: BaseComponentClassProps;
+	key?: string;
+	styles?: BaseComponentClassProps;
 } & T;

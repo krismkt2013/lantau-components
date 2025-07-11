@@ -8,15 +8,15 @@ This document tracks the immediate focus of the development work. It's updated f
 
 ## Current Focus
 
-*   Ensuring Memory Bank aligns with `README.md` as the single source of truth.
+* Ensuring Memory Bank aligns with `README.md` as the single source of truth.
 
 ## Recent Changes
 
-*   [2025-07-11 22:05:10] - Refactored `systemPatterns.md` to remove redundant guidelines and point to `README.md` as the source of truth to avoid conflicts.
-*   [2025-07-11 22:01:30] - Updated `decisionLog.md` to establish `README.md` as the source of truth for project guidelines.
-*   Initialized the Memory Bank.
+* [2025-07-11 22:05:10] - Refactored `systemPatterns.md` to remove redundant guidelines and point to `README.md` as the source of truth to avoid conflicts.
+* [2025-07-11 22:01:30] - Updated `decisionLog.md` to establish `README.md` as the source of truth for project guidelines.
+* Initialized the Memory Bank.
 
 ## Open Questions/Issues
 
-*   None at the moment.
-*   [2025-07-11 22:46:13] - The current focus is to ensure all UI components align with the established coding guidelines in the `README.md`.
+* None at the moment.
+* [2025-07-11 22:46:13] - The current focus is to ensure all UI components align with the established coding guidelines in the `README.md`.

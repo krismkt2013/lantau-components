@@ -1,9 +1,9 @@
 <script module lang="ts">
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import MagneticPad from '@components/MagneticPad/MagneticPad.svelte';
-	import MagneticContainer from '@components/MagneticContainer/MagneticContainer.svelte';
-	import MagneticLine from '@components/MagneticLine/MagneticLine.svelte';
-	import { SHAPE } from '@components/MagneticContainer/constance.svelte';
+	// import MagneticContainer from '@components/MagneticContainer/MagneticContainer.svelte';
+	// import MagneticLine from '@components/MagneticLine/MagneticLine.svelte';
+	// import { SHAPE } from '@components/MagneticContainer/constance.svelte';
 
 	const { Story } = defineMeta({
 		title: 'Component/MagneticPad',
@@ -14,7 +14,8 @@
 
 <Story name="Default">
 	<div style="height: 500px; width: 500px">
-		<MagneticPad>
+		<MagneticPad></MagneticPad>
+		<!-- <MagneticPad>
 			<MagneticContainer id="c1" shape={SHAPE.RECTANGLE} magnetic={true}>
 				<div style="width:100px; height:100px; background:red"></div>
 			</MagneticContainer>
@@ -22,6 +23,6 @@
 				<div style="width:100px; height:100px; background:blue"></div>
 			</MagneticContainer>
 			<MagneticLine from="c1" to="c2" />
-		</MagneticPad>
+		</MagneticPad> -->
 	</div>
 </Story>

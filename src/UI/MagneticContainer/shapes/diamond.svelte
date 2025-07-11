@@ -11,7 +11,7 @@
 			{ x: 50, y: 100 },
 			{ x: 0, y: 50 }
 		];
-		const points: { x: number; y: number }[] = [];
+		const points: { x: number; y: number; id: number }[] = [];
 		const pointsPerSide = NUM_POINTS / 4;
 
 		for (let i = 0; i < 4; i++) {
@@ -21,7 +21,7 @@
 				const t = j / pointsPerSide;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				points.push({ x, y });
+				points.push({ x, y, id: i });
 			}
 		}
 		return points;
@@ -30,7 +30,7 @@
 </script>
 
 <div class="magnetic-points">
-	{#each diamondPoints as point}
+	{#each diamondPoints as point (point.id)}
 		<div class="point" style="top: {point.y}%; left: {point.x}%; z-index: 1;"></div>
 	{/each}
 </div>

@@ -17,7 +17,7 @@
 		width = 150,
 		height = 150,
 		magnetic = true,
-		id,
+		id
 	}: ComponentProps = $props();
 	//*** end of props handing ***//
 
