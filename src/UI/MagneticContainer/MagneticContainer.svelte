@@ -3,6 +3,7 @@
 	import Rectangle from '@components/MagneticContainer/shapes/rectangle.svelte'
 	import Circle from '@components/MagneticContainer/shapes/circle.svelte';
 	import Diamond from '@components/MagneticContainer/shapes/diamond.svelte';
+	import Triangle from '@components/MagneticContainer/shapes/triangle.svelte';
 	import '@components/MagneticContainer/MagneticContainer.css';
 
 	export let shape: SHAPE = SHAPE.RECTANGLE;
@@ -14,7 +15,8 @@
 	const shapeComponents = {
 		[SHAPE.RECTANGLE]: Rectangle,
 		[SHAPE.CIRCLE]: Circle,
-		[SHAPE.DIAMOND]: Diamond
+		[SHAPE.DIAMOND]: Diamond,
+		[SHAPE.TRIANGLE]: Triangle
 	};
 
 	let dragging = false;

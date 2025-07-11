@@ -26,6 +26,38 @@
 	</div>
 </Story>
 
+<Story name="Diamond">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.DIAMOND}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
+<Story name="MagneticDiamond">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.DIAMOND} magnetic={true}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
+<Story name="Triangle">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.TRIANGLE}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
+<Story name="MagneticTriangle">
+	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
+		<MagneticContainer shape={SHAPE.TRIANGLE} magnetic={true}>
+			<button>Hover over me</button>
+		</MagneticContainer>
+	</div>
+</Story>
+
 <Story name="MagneticRectangle">
 	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
 		<MagneticContainer shape={SHAPE.RECTANGLE} magnetic={true}>
