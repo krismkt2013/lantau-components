@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { NUM_POINTS } from '@components/MagneticContainer/constance.svelte';
 
-	let points: { x: number; y: number }[] = [];
+	let diamondPoints: { x: number; y: number }[] = [];
 	$: {
 		const corners = [
-			{ x: 0, y: 0 },
-			{ x: 100, y: 0 },
-			{ x: 100, y: 100 },
-			{ x: 0, y: 100 }
+			{ x: 50, y: 0 },
+			{ x: 100, y: 50 },
+			{ x: 50, y: 100 },
+			{ x: 0, y: 50 }
 		];
-		const newPoints: { x: number; y: number }[] = [];
+		const points: { x: number; y: number }[] = [];
 		const pointsPerSide = NUM_POINTS / 4;
 
 		for (let i = 0; i < 4; i++) {
@@ -19,15 +19,15 @@
 				const t = j / pointsPerSide;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				newPoints.push({ x, y });
+				points.push({ x, y });
 			}
 		}
-		points = newPoints;
+		diamondPoints = points;
 	}
 </script>
 
 <div class="magnetic-points">
-	{#each points as p}
-		<div class="point" style="top: {p.y}%; left: {p.x}%;"></div>
+	{#each diamondPoints as point}
+		<div class="point" style="top: {point.y}%; left: {point.x}%; z-index: 1;"></div>
 	{/each}
 </div>
