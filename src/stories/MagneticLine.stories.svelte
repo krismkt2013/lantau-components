@@ -7,8 +7,8 @@
 		component: MagneticLine,
 		tags: ['autodocs'],
 		argTypes: {
-			startPoint: { control: 'object' },
-			endPoint: { control: 'object' },
+			initialStartPoint: { control: 'object' },
+			initialEndPoint: { control: 'object' },
 			showStartArrow: { control: 'boolean' },
 			showEndArrow: { control: 'boolean' },
 			onPointsChange: { action: 'onPointsChange' },
@@ -21,8 +21,8 @@
 	name="Complete"
 	args={{
 		id: 'complete-line-story',
-		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 250, y: 150 },
+		initialStartPoint: { x: 50, y: 50 },
+		initialEndPoint: { x: 250, y: 150 },
 		showStartArrow: true,
 		showEndArrow: true
 	}}

@@ -7,7 +7,7 @@
 	import Diamond from '@components/MagneticContainer/shapes/diamond.svelte';
 	import Triangle from '@components/MagneticContainer/shapes/triangle.svelte';
 	import Pentagon from '@components/MagneticContainer/shapes/pentagon.svelte';
-	import type { ComponentProps } from './types.d';
+	import type { ComponentProps, Ref } from './types.d';
 	import { onDestroy } from 'svelte';
 	//*** end of imports ***//
 
@@ -48,6 +48,8 @@
 	let resizeStart = { x: 0, y: 0 };
 	let initialSize = { width: 0, height: 0 };
 	let initialPosition = { x: 0, y: 0 };
+	// svelte-ignore non_reactive_update
+	let magneticPointsContainerRef: Ref;
 	//*** end of non-reactive state ***//
 
 	//*** start of event handling ***//
@@ -103,6 +105,18 @@
 		dragging = false;
 		resizing = false;
 	}
+
+	export function getPoints() {
+		if (!magneticPointsContainerRef) {
+			console.warn('Magnetic points container reference is not set.');
+			return [];
+		}
+		if (typeof magneticPointsContainerRef.getPoints !== 'function') {
+			console.warn('Magnetic points container does not have a getPoints method.');
+			return [];
+		}
+		return magneticPointsContainerRef.getPoints();
+	}
 	//*** end of event handling ***//
 
 	//*** start of lifecycle management ***//
@@ -130,7 +144,7 @@
 	tabindex="0"
 >
 	{#if magnetic}
-		<Component />
+		<Component bind:this={magneticPointsContainerRef} />
 	{/if}
 </div>
 

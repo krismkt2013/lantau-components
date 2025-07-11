@@ -12,18 +12,18 @@ export interface MagneticLineProps {
 	id?: string;
 
 	/**
-	 * The starting point of the line, defined by x and y coordinates.
+	 * The initial starting point of the line, defined by x and y coordinates.
 	 * The component will render the line starting from this position.
 	 * @default { x: 0, y: 0 }
 	 */
-	startPoint?: Point;
+	initialStartPoint?: Point;
 
 	/**
-	 * The ending point of the line, defined by x and y coordinates.
+	 * The initial ending point of the line, defined by x and y coordinates.
 	 * The component will render the line ending at this position.
 	 * @default { x: 0, y: 0 }
 	 */
-	endPoint?: Point;
+	initialEndPoint?: Point;
 
 	/**
 	 * Determines whether to display an arrow at the starting point of the line.

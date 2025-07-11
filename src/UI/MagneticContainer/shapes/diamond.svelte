@@ -3,6 +3,10 @@
 	import { NUM_POINTS } from '@components/MagneticContainer/constance.svelte';
 	//*** end of imports ***//
 
+	//*** start of state ***//
+	let pointsRef: HTMLDivElement[] = [];
+	//*** end of state ***//
+
 	//*** start of derived state ***//
 	const diamondPoints = $derived.by(() => {
 		const corners = [
@@ -27,10 +31,20 @@
 		return points;
 	});
 	//*** end of derived state ***//
+
+	//*** start of exports ***//
+	export function getPoints() {
+		return pointsRef;
+	}
+	//*** end of exports ***//
 </script>
 
 <div class="magnetic-points">
-	{#each diamondPoints as point (point.id)}
-		<div class="point" style="top: {point.y}%; left: {point.x}%; z-index: 1;"></div>
+	{#each diamondPoints as point, i (point.id)}
+		<div
+			class="point"
+			style="top: {point.y}%; left: {point.x}%; z-index: 1;"
+			bind:this={pointsRef[i]}
+		></div>
 	{/each}
 </div>

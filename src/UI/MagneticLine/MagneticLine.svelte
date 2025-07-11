@@ -7,14 +7,19 @@
 
 	//*** start of props handing ***//
 	let {
-		startPoint = { x: 0, y: 0 },
-		endPoint = { x: 0, y: 0 },
+		initialStartPoint = { x: 0, y: 0 },
+		initialEndPoint = { x: 0, y: 0 },
 		showStartArrow = false,
 		showEndArrow = false,
 		onPointsChange,
 		id
 	}: MagneticLineProps = $props();
 	//*** end of props handing ***//
+
+	//*** start of state ***//
+	let startPoint = $state(initialStartPoint);
+	let endPoint = $state(initialEndPoint);
+	//*** end of state ***//
 
 	//*** start of derived state ***//
 	const length = $derived(

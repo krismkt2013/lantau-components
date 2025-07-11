@@ -35,3 +35,5 @@ export interface ComponentProps {
 	 */
 	id?: string;
 }
+
+export type Ref = { getPoints: () => HTMLDivElement[] };
