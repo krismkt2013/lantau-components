@@ -1,0 +1,1 @@
+export const MIN_DISTANCE_TO_MAGNETIC_POINT = 20;

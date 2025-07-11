@@ -1,7 +1,7 @@
 <script module lang="ts">
-	import MagneticContainer from './MagneticContainer.svelte';
+	import MagneticContainer from '@components/MagneticContainer/MagneticContainer.svelte';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import { SHAPE } from './constance.svelte';
+	import { SHAPE } from '@components/MagneticContainer/constance.svelte';
 
 	const { Story } = defineMeta({
 		title: 'UI/MagneticContainer',
