@@ -1,17 +1,26 @@
 <script lang="ts">
+	//*** start of imports ***//
+	import '@components/MagneticContainer/MagneticContainer.css';
 	import { SHAPE, COMPONENT_EDGE_SIZE } from '@components/MagneticContainer/constance.svelte';
 	import Rectangle from '@components/MagneticContainer/shapes/rectangle.svelte';
 	import Circle from '@components/MagneticContainer/shapes/circle.svelte';
 	import Diamond from '@components/MagneticContainer/shapes/diamond.svelte';
 	import Triangle from '@components/MagneticContainer/shapes/triangle.svelte';
 	import Pentagon from '@components/MagneticContainer/shapes/pentagon.svelte';
-	import '@components/MagneticContainer/MagneticContainer.css';
+	import type { ComponentProps } from './types.d';
+	import { onDestroy } from 'svelte';
+	//*** end of imports ***//
 
-	export let shape: SHAPE = SHAPE.RECTANGLE;
-	export let width: number = 150;
-	export let height: number = 150;
-	export let magnetic: boolean = true;
+	//*** start of props handing ***//
+	let {
+		shape = SHAPE.RECTANGLE,
+		width = 150,
+		height = 150,
+		magnetic = true,
+	}: ComponentProps = $props();
+	//*** end of props handing ***//
 
+	//*** start of derived state ***//
 	const shapeComponents = {
 		[SHAPE.RECTANGLE]: Rectangle,
 		[SHAPE.CIRCLE]: Circle,
@@ -19,18 +28,25 @@
 		[SHAPE.TRIANGLE]: Triangle,
 		[SHAPE.PENTAGON]: Pentagon
 	};
+	const Component = $derived(shapeComponents[shape]);
+	//*** end of derived state ***//
 
+	//*** start of reactive state ***//
+	let position = $state({ x: 0, y: 0 });
+	let size = $state({ width, height });
+	let dragging = $state(false);
+	let resizing = $state(false);
+	//*** end of reactive state ***//
+
+	//*** start of non-reactive state ***//
 	let containerRef: HTMLDivElement;
-
-	let position = { x: 0, y: 0 };
-	let size = { width, height };
-	let dragging = false;
-	let resizing = false;
 	let dragStart = { x: 0, y: 0 };
 	let resizeStart = { x: 0, y: 0 };
 	let initialSize = { width: 0, height: 0 };
 	let initialPosition = { x: 0, y: 0 };
+	//*** end of non-reactive state ***//
 
+	//*** start of event handling ***//
 	function handleMouseDown(event: MouseEvent) {
 		const rect = containerRef.getBoundingClientRect();
 		const edgeSize = COMPONENT_EDGE_SIZE;
@@ -82,9 +98,15 @@
 	function handleMouseUp() {
 		dragging = false;
 		resizing = false;
+	}
+	//*** end of event handling ***//
+
+	//*** start of lifecycle management ***//
+	onDestroy(() => {
 		window.removeEventListener('mousemove', handleMouseMove);
 		window.removeEventListener('mouseup', handleMouseUp);
-	}
+	});
+	//*** end of lifecycle management ***/
 </script>
 
 <div
@@ -98,12 +120,13 @@
     top: {position.y}px;
     cursor: {dragging ? 'grabbing' : resizing ? 'nwse-resize' : 'grab'};
   "
-	on:mousedown={handleMouseDown}
+	onmousedown={handleMouseDown}
 	role="cell"
 	tabindex="0"
 >
-	<slot />
 	{#if magnetic}
-		<svelte:component this={shapeComponents[shape]} />
+		<Component />
 	{/if}
 </div>
+
+<style src="@component/MagneticContainer/MagneticContainer.css"></style>

@@ -1,8 +1,10 @@
 <script lang="ts">
+	//*** start of imports ***//
 	import { NUM_POINTS } from '@components/MagneticContainer/constance.svelte';
+	//*** end of imports ***//
 
-	let points: { x: number; y: number }[] = [];
-	$: {
+	//*** start of derived state ***//
+	const points = $derived.by(() => {
 		const corners = [
 			{ x: 50, y: 0 },
 			{ x: 100, y: 100 },
@@ -10,12 +12,12 @@
 		];
 		const newPoints: { x: number; y: number }[] = [];
 		const pointsPerSide = Math.floor(NUM_POINTS / 3);
-        const remainder = NUM_POINTS % 3;
+		const remainder = NUM_POINTS % 3;
 
 		for (let i = 0; i < 3; i++) {
 			const startPoint = corners[i];
 			const endPoint = corners[(i + 1) % 3];
-            const numSidePoints = pointsPerSide + (i < remainder ? 1 : 0);
+			const numSidePoints = pointsPerSide + (i < remainder ? 1 : 0);
 			for (let j = 0; j < numSidePoints; j++) {
 				const t = j / numSidePoints;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
@@ -23,8 +25,9 @@
 				newPoints.push({ x, y });
 			}
 		}
-		points = newPoints;
-	}
+		return newPoints;
+	});
+	//*** end of derived state ***//
 </script>
 
 <div class="magnetic-points">

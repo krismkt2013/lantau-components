@@ -1,45 +1,36 @@
 <script lang="ts">
+	//*** start of imports ***//
 	import '@components/MagneticLine/MagneticLine.css';
+	import type { MagneticLineProps } from './types.d';
 	import { onDestroy } from 'svelte';
-	import type { MagneticLineProps } from '@components/MagneticLine/types';
+	//*** end of imports ***//
 
-	//***  start of props handing ***//
-	/**
-	 * @type MagneticLineProps
-	 * @property {x: number, y: number} startPoint - The starting point of the line.
-	 * @property {x: number, y: number} endPoint - The ending point of the line.
-	 * @property {boolean} showStartArrow - Whether to show an arrow at the start of the line.
-	 * @property {boolean} showEndArrow - Whether to show an arrow at the end of the line.
-	 */
+	//*** start of props handing ***//
 	let {
 		startPoint = { x: 0, y: 0 },
 		endPoint = { x: 0, y: 0 },
 		showStartArrow = false,
 		showEndArrow = false,
 		onPointsChange,
-		id,
+		id
 	}: MagneticLineProps = $props();
-	//***  end of props handing ***//
+	//*** end of props handing ***//
 
-
-	//***  start of derived state handling ***
-	let length = $derived.by(() =>
+	//*** start of derived state ***//
+	const length = $derived(
 		Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2))
 	);
-	let angle = $derived.by(
-		() => (Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) * 180) / Math.PI
+	const angle = $derived(
+		(Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) * 180) / Math.PI
 	);
-	//***  end of derived state handling ***/
+	//*** end of derived state ***//
 
-	//*** start of non-reactive state management ***
-	let isDraggingStart = false;
-	let isDraggingEnd = false;
-	//*** end of non-reactive state management ***
+	//*** start of reactive state ***//
+	let isDraggingStart = $state(false);
+	let isDraggingEnd = $state(false);
+	//*** end of reactive state ***//
 
-
-	//*** start of internal event handling ***/
-	// When mousedown start to listen to mousemove and mouseup events
-	// also set the dragging target to either start or end of the line
+	//*** start of event handling ***//
 	function handleMouseDown(event: MouseEvent, handle: 'start' | 'end') {
 		if (handle === 'start') {
 			isDraggingStart = true;
@@ -50,8 +41,6 @@
 		window.addEventListener('mouseup', handleMouseUp);
 	}
 
-	// Based on the mouse position, update the start or end point
-	// If there is a magnetic point close enough, snap to it
 	function handleMouseMove(event: MouseEvent) {
 		let newPoint = { x: event.clientX, y: event.clientY };
 
@@ -62,9 +51,6 @@
 		}
 	}
 
-	// When mouse up, check if the point is close to a magnetic point again
-	// If it is, snap to that point
-	// Remove the event listeners for mousemove and mouseup
 	function handleMouseUp() {
 		isDraggingStart = false;
 		isDraggingEnd = false;
@@ -74,11 +60,10 @@
 			onPointsChange(startPoint, endPoint);
 		}
 	}
-	//*** end of internal event handling ***/
+	//*** end of event handling ***//
 
-	//*** start of lifecycle management ***
+	//*** start of lifecycle management ***//
 	onDestroy(() => {
-		// Clean up event listeners when the component is destroyed
 		window.removeEventListener('mousemove', handleMouseMove);
 		window.removeEventListener('mouseup', handleMouseUp);
 	});

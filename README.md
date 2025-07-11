@@ -80,11 +80,13 @@ Each component should be self-contained within its own directory under `src/UI/`
 
 Organize the `<script>` tag into logical, commented sections to improve readability. The sections must follow this specific order:
 
-1.  **Props Handling**
-2.  **Derived State**
-3.  **State Handling** (including both reactive `$state` and non-reactive `let` variables)
-4.  **Event Handling**
-5.  **Lifecycle Management**
+1.  **Imports**
+2.  **Props Handling**
+3.  **Derived State**
+4.  **Reactive State**
+5.  **Non-Reactive State**
+6.  **Event Handling**
+7.  **Lifecycle Management**
 
 Use the following comment style to delineate each section:
 
@@ -113,10 +115,13 @@ Use the following comment style to delineate each section:
 	});
 	//*** end of derived state ***//
 
-	//*** start of state handling ***//
+	//*** start of reactive state ***//
 	let someState = $state(0);
-	let isSomething = false; // non-reactive state
-	//*** end of state handling ***//
+	//*** end of reactive state ***//
+
+	//*** start of non-reactive state ***//
+	let isSomething = false;
+	//*** end of non-reactive state ***//
 
 	//*** start of event handling ***//
 	function handleClick() {
@@ -152,6 +157,10 @@ Use the following comment style to delineate each section:
 #### 7. Accessibility (A11y)
 
 -   Ensure all interactive elements are accessible. If using non-semantic elements like `div` for buttons, add `role="button"` and `tabindex="0"`.
+
+#### 8. Imports
+
+-   **Path Aliases:** Use the `@components/` path alias when importing components or modules from within the `src/UI` directory. This improves readability and consistency. For example, instead of `import MyComponent from '../MyComponent/MyComponent.svelte'`, use `import MyComponent from '@components/MyComponent/MyComponent.svelte'`.
 
 ## Project TODO List
 

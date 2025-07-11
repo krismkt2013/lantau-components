@@ -1,8 +1,10 @@
 <script lang="ts">
+	//*** start of imports ***//
 	import { NUM_POINTS } from '@components/MagneticContainer/constance.svelte';
+	//*** end of imports ***//
 
-	let diamondPoints: { x: number; y: number }[] = [];
-	$: {
+	//*** start of derived state ***//
+	const diamondPoints = $derived.by(() => {
 		const corners = [
 			{ x: 50, y: 0 },
 			{ x: 100, y: 50 },
@@ -22,8 +24,9 @@
 				points.push({ x, y });
 			}
 		}
-		diamondPoints = points;
-	}
+		return points;
+	});
+	//*** end of derived state ***//
 </script>
 
 <div class="magnetic-points">
