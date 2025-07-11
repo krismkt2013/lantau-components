@@ -116,3 +116,5 @@
 		<div class="arrow-end"></div>
 	{/if}
 </div>
+
+<style src="@components/MagneticLine/MagneticLine.css"></style>
