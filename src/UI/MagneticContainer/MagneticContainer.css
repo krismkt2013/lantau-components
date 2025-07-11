@@ -1,11 +1,11 @@
 .container {
-	position: relative;
-	padding: 20px;
+	position: absolute;
+	padding: 15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	cursor: move;
 	background-color: #f0f0f0;
+	user-select: none;
 }
 
 .rectangle {

@@ -3,7 +3,7 @@
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 
 	const { Story } = defineMeta({
-		title: 'UI/MagneticLine',
+		title: 'Component/MagneticLine',
 		component: MagneticLine,
 		tags: ['autodocs'],
 		argTypes: {

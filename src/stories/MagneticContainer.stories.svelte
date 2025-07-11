@@ -4,7 +4,7 @@
 	import { SHAPE } from '@components/MagneticContainer/constance.svelte';
 
 	const { Story } = defineMeta({
-		title: 'UI/MagneticContainer',
+		title: 'Component/MagneticContainer',
 		component: MagneticContainer,
 		tags: ['autodocs']
 	});
