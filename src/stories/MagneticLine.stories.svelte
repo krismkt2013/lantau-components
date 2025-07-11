@@ -17,7 +17,6 @@
 	});
 </script>
 
-
 <Story
 	name="Complete"
 	args={{
@@ -28,5 +27,3 @@
 		showEndArrow: true
 	}}
 />
-
-

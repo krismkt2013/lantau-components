@@ -42,10 +42,7 @@
 	};
 </script>
 
-<Story
-	name="Complete"
-	args={args}
->
+<Story name="Complete" {args}>
 	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
 		<MagneticContainer {...args} />
 	</div>

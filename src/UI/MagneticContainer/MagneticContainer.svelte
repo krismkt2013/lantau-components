@@ -34,9 +34,9 @@
 
 	//*** start of reactive state ***//
 	let position = $state({ x: 0, y: 0 });
-	let size = $state({ 
-		width: initialWidth, 
-		height: initialHeight 
+	let size = $state({
+		width: initialWidth,
+		height: initialHeight
 	});
 	let dragging = $state(false);
 	let resizing = $state(false);

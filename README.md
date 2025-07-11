@@ -166,9 +166,10 @@ Use the following comment style to delineate each section:
 
 - **CSF 3.0 Format**: Stories should be written using the Component Story Format 3.0 (`defineMeta` and `Story`) with the `<script module lang="ts">` syntax.
 - **Single Component Display**: Each `.stories.svelte` file should be structured to display one primary component story. The recommended approach is to have a single "Complete" story that showcases all props, which users can interact with via Storybook's controls panel.
-- **Documentation Source**: All prop descriptions, types, and default values *must* be documented with JSDoc within the component's `types.d.ts` file. Storybook is configured to automatically parse these comments. Do not duplicate this documentation in the `.stories.svelte` file.
+- **Documentation Source**: All prop descriptions, types, and default values _must_ be documented with JSDoc within the component's `types.d.ts` file. Storybook is configured to automatically parse these comments. Do not duplicate this documentation in the `.stories.svelte` file.
 - **`argTypes`**: The `argTypes` object in the story's meta-information should only define the `control` type (e.g., `boolean`, `object`, `text`) for each prop and configure any `action` listeners (e.g., `onPointsChange`).
 - **"Complete" Story**: Always provide one story, typically named `Complete`, that includes all of the component's props set in its `args`. This serves as a comprehensive example and allows users to see all features at a glance.
+
 ## Project TODO List
 
 - [ ] Setup auto testing
