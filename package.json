@@ -50,7 +50,7 @@
     "vitest-browser-svelte": "^0.1.0"
   },
   "engines": {
-    "node": ">=20.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=22.17.0",
+    "pnpm": ">=10.13.1"
   }
 }
