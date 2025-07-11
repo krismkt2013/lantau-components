@@ -16,13 +16,13 @@ export interface ComponentProps {
 	 * The initial width of the container in pixels.
 	 * @default 150
 	 */
-	width?: number;
+	initialWidth?: number;
 
 	/**
 	 * The initial height of the container in pixels.
 	 * @default 150
 	 */
-	height?: number;
+	initialHeight?: number;
 
 	/**
 	 * Determines if the container has magnetic points.

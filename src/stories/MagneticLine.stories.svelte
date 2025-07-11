@@ -10,87 +10,23 @@
 			startPoint: { control: 'object' },
 			endPoint: { control: 'object' },
 			showStartArrow: { control: 'boolean' },
-			showEndArrow: { control: 'boolean' }
+			showEndArrow: { control: 'boolean' },
+			onPointsChange: { action: 'onPointsChange' },
+			id: { control: 'text' }
 		}
 	});
 </script>
 
-<Story
-	name="Default"
-	args={{
-		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 200, y: 50 },
-		showStartArrow: false,
-		showEndArrow: false
-	}}
->
-	<div style="position: relative; height: 400px;">
-		<MagneticLine startPoint={{ x: 50, y: 50 }} endPoint={{ x: 200, y: 50 }} />
-	</div>
-</Story>
 
 <Story
-	name="WithStartArrow"
+	name="Complete"
 	args={{
+		id: 'complete-line-story',
 		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 200, y: 50 },
-		showStartArrow: true,
-		showEndArrow: false
-	}}
->
-	<div style="position: relative; height: 400px;">
-		<MagneticLine startPoint={{ x: 50, y: 50 }} endPoint={{ x: 200, y: 50 }} showStartArrow />
-	</div>
-</Story>
-
-<Story
-	name="WithEndArrow"
-	args={{
-		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 200, y: 50 },
-		showStartArrow: false,
-		showEndArrow: true
-	}}
->
-	<div style="position: relative; height: 400px;">
-		<MagneticLine startPoint={{ x: 50, y: 50 }} endPoint={{ x: 200, y: 50 }} showEndArrow />
-	</div>
-</Story>
-
-<Story
-	name="WithBothArrows"
-	args={{
-		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 200, y: 50 },
+		endPoint: { x: 250, y: 150 },
 		showStartArrow: true,
 		showEndArrow: true
 	}}
->
-	<div style="position: relative; height: 400px;">
-		<MagneticLine
-			startPoint={{ x: 50, y: 50 }}
-			endPoint={{ x: 200, y: 50 }}
-			showStartArrow
-			showEndArrow
-		/>
-	</div>
-</Story>
+/>
 
-<Story
-	name="AngledLine"
-	args={{
-		startPoint: { x: 50, y: 50 },
-		endPoint: { x: 200, y: 50 },
-		showStartArrow: true,
-		showEndArrow: true
-	}}
->
-	<div style="position: relative; height: 400px;">
-		<MagneticLine
-			startPoint={{ x: 50, y: 50 }}
-			endPoint={{ x: 200, y: 50 }}
-			showStartArrow
-			showEndArrow
-		/>
-	</div>
-</Story>
+

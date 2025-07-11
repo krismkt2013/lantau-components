@@ -14,8 +14,8 @@
 	//*** start of props handing ***//
 	let {
 		shape = SHAPE.RECTANGLE,
-		width = 150,
-		height = 150,
+		initialWidth = 150,
+		initialHeight = 150,
 		magnetic = true,
 		id
 	}: ComponentProps = $props();
@@ -34,7 +34,10 @@
 
 	//*** start of reactive state ***//
 	let position = $state({ x: 0, y: 0 });
-	let size = $state({ width, height });
+	let size = $state({ 
+		width: initialWidth, 
+		height: initialHeight 
+	});
 	let dragging = $state(false);
 	let resizing = $state(false);
 	//*** end of reactive state ***//

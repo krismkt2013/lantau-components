@@ -5,31 +5,45 @@ export interface Point {
 
 export interface MagneticLineProps {
 	/**
-	 * The starting point of the line.
+	 * The unique identifier for the magnetic line component.
+	 * This ID is applied to the root `div` element.
+	 * @default undefined
+	 */
+	id?: string;
+
+	/**
+	 * The starting point of the line, defined by x and y coordinates.
+	 * The component will render the line starting from this position.
 	 * @default { x: 0, y: 0 }
 	 */
 	startPoint?: Point;
+
 	/**
-	 * The ending point of the line.
+	 * The ending point of the line, defined by x and y coordinates.
+	 * The component will render the line ending at this position.
 	 * @default { x: 0, y: 0 }
 	 */
 	endPoint?: Point;
+
 	/**
-	 * Whether to show an arrow at the start of the line.
+	 * Determines whether to display an arrow at the starting point of the line.
+	 * When `true`, an arrow pointing outwards from the start will be visible.
 	 * @default false
 	 */
 	showStartArrow?: boolean;
+
 	/**
-	 * Whether to show an arrow at the end of the line.
+	 * Determines whether to display an arrow at the ending point of the line.
+	 * When `true`, an arrow pointing outwards from the end will be visible.
 	 * @default false
 	 */
 	showEndArrow?: boolean;
+
 	/**
-	 * Callback function that is called when the points of the line change.
+	 * A callback function that is invoked whenever the start or end points of the line are changed
+	 * by user interaction (i.e., dragging the handles). The function receives the new `startPoint`
+	 * and `endPoint` as arguments.
+	 * @default undefined
 	 */
 	onPointsChange?: (startPoint: Point, endPoint: Point) => void;
-	/**
-	 * The id of the line.
-	 */
-	id?: string;
 }
