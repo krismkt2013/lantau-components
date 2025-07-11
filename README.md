@@ -160,7 +160,7 @@ Use the following comment style to delineate each section:
 
 #### 8. Imports
 
--   **Path Aliases:** Use the `@components/` path alias when importing components or modules from within the `src/UI` directory. This improves readability and consistency. For example, instead of `import MyComponent from '../MyComponent/MyComponent.svelte'`, use `import MyComponent from '@components/MyComponent/MyComponent.svelte'`.
+-   **Path Aliases:** Use the `@components/` path alias when importing any resource (such as components, modules, or type definitions) from within the `src/UI` directory. This improves readability and consistency. For example, instead of `import MyComponent from '../MyComponent/MyComponent.svelte'`, use `import MyComponent from '@components/MyComponent/MyComponent.svelte'`.
 
 ## Project TODO List
 

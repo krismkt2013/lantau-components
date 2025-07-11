@@ -17,6 +17,7 @@
 		width = 150,
 		height = 150,
 		magnetic = true,
+		id,
 	}: ComponentProps = $props();
 	//*** end of props handing ***//
 
@@ -110,6 +111,7 @@
 </script>
 
 <div
+	{id}
 	bind:this={containerRef}
 	class="{shape} container"
 	class:magnetic

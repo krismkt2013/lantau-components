@@ -29,4 +29,9 @@ export interface ComponentProps {
 	 * @default true
 	 */
 	magnetic?: boolean;
+
+	/**
+	 * The ID of the container.
+	 */
+	id?: string;
 }

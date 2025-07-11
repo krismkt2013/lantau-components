@@ -71,7 +71,7 @@
 </script>
 
 <div
-	id={id}
+	{id}
 	class="magnetic-line-container"
 	style="left: {startPoint.x}px; top: {startPoint.y}px; width: {length}px; transform: rotate({angle}deg);"
 >

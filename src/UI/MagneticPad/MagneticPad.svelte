@@ -1,26 +1,15 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
-  import type { Point } from '@components/MagneticContainer/types';
+	//*** start of imports ***//
+    import '@components/MagneticPad/MagneticPad.css';
+	import type { ComponentProps } from '@components/MagneticPad/types.d.ts';
+	//*** end of imports ***//
 
-  const containerPositions = writable<Record<string, Point>>({});
-  setContext('container-positions', containerPositions);
-
-  export const addContainer = (id: string, position: Point) => {
-    containerPositions.update(positions => {
-      positions[id] = position;
-      return positions;
-    });
-  };
-
-  export const updateContainerPosition = (id: string, position: Point) => {
-    containerPositions.update(positions => {
-      positions[id] = position;
-      return positions;
-    });
-  };
+	//*** start of props handing ***//
+	let { id }: ComponentProps = $props();
+	//*** end of props handing ***//
 </script>
 
-<div class="magnetic-pad">
-  <slot />
+<div class="magnetic-pad" {id}>
 </div>
+
+<style src="@components/MagneticPad/MagneticPad.css"></style>

@@ -19,3 +19,4 @@ This document tracks the immediate focus of the development work. It's updated f
 ## Open Questions/Issues
 
 *   None at the moment.
+*   [2025-07-11 22:46:13] - The current focus is to ensure all UI components align with the established coding guidelines in the `README.md`.
