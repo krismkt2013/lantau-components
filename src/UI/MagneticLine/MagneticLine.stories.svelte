@@ -1,5 +1,5 @@
 <script module lang="ts">
-	import MagneticLine from './MagneticLine.svelte';
+	import MagneticLine from '@components/MagneticLine/MagneticLine.svelte';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 
 	const { Story } = defineMeta({

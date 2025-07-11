@@ -32,3 +32,20 @@
 	right: -10px;
 	top: -4.5px;
 }
+.handle-start, .handle-end {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	z-index: 2;
+	border-radius: 50%;
+	top: -20px;
+}
+
+.handle-start {
+	left: -20px;
+}
+
+.handle-end {
+	right: -20px;
+}
