@@ -1,41 +1,44 @@
 <script lang="ts">
 	import '@components/MagneticLine/MagneticLine.css';
-	import type { Point } from '@components/MagneticContainer/types';
-	import { allMagneticPoints } from '@components/MagneticContainer/magneticPointsStore.svelte';
-	import { MIN_DISTANCE_TO_MAGNETIC_POINT } from '@components/MagneticLine/constance.svelte';
+	import { onDestroy } from 'svelte';
+	import type { MagneticLineProps } from '@components/MagneticLine/types';
 
-	export let startPoint: Point;
-	export let endPoint: Point;
-	export let showStartArrow: boolean = false;
-	export let showEndArrow: boolean = false;
+	//***  start of props handing ***//
+	/**
+	 * @type MagneticLineProps
+	 * @property {x: number, y: number} startPoint - The starting point of the line.
+	 * @property {x: number, y: number} endPoint - The ending point of the line.
+	 * @property {boolean} showStartArrow - Whether to show an arrow at the start of the line.
+	 * @property {boolean} showEndArrow - Whether to show an arrow at the end of the line.
+	 */
+	let {
+		startPoint = { x: 0, y: 0 },
+		endPoint = { x: 0, y: 0 },
+		showStartArrow = false,
+		showEndArrow = false,
+		onPointsChange,
+	}: MagneticLineProps = $props();
+	//***  end of props handing ***//
 
-	$: length = Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2));
-	$: angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) * 180 / Math.PI;
 
+	//***  start of derived state handling ***
+	let length = $derived.by(() =>
+		Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2))
+	);
+	let angle = $derived.by(
+		() => (Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x) * 180) / Math.PI
+	);
+	//***  end of derived state handling ***/
+
+	//*** start of non-reactive state management ***
 	let isDraggingStart = false;
 	let isDraggingEnd = false;
+	//*** end of non-reactive state management ***
 
-	// find the closest magnetic point to a given point (start / end)
-	function findClosestPoint(point: Point): Point | null {
-		let closestPoint: Point | null = null;
-		let minDistance = Infinity;
 
-		for (const p of $allMagneticPoints) {
-			const distance = Math.sqrt(Math.pow(p.x - point.x, 2) + Math.pow(p.y - point.y, 2));
-			if (distance < minDistance) {
-				minDistance = distance;
-				closestPoint = p;
-			}
-		}
-
-		if (closestPoint && minDistance < MIN_DISTANCE_TO_MAGNETIC_POINT) {
-			return closestPoint;
-		}
-
-		return null;
-	}
-
+	//*** start of internal event handling ***/
 	// When mousedown start to listen to mousemove and mouseup events
+	// also set the dragging target to either start or end of the line
 	function handleMouseDown(event: MouseEvent, handle: 'start' | 'end') {
 		if (handle === 'start') {
 			isDraggingStart = true;
@@ -50,11 +53,6 @@
 	// If there is a magnetic point close enough, snap to it
 	function handleMouseMove(event: MouseEvent) {
 		let newPoint = { x: event.clientX, y: event.clientY };
-		const closestPoint = findClosestPoint(newPoint);
-
-		if (closestPoint) {
-			newPoint = closestPoint;
-		}
 
 		if (isDraggingStart) {
 			startPoint = newPoint;
@@ -63,40 +61,49 @@
 		}
 	}
 
-	// When mouseup, check if the point is close to a magnetic point again
+	// When mouse up, check if the point is close to a magnetic point again
 	// If it is, snap to that point
 	// Remove the event listeners for mousemove and mouseup
 	function handleMouseUp() {
-		if (isDraggingStart) {
-			const closestPoint = findClosestPoint(startPoint);
-			if (closestPoint) {
-				startPoint = closestPoint;
-			}
-		}
-		if (isDraggingEnd) {
-			const closestPoint = findClosestPoint(endPoint);
-			if (closestPoint) {
-				endPoint = closestPoint;
-			}
-		}
 		isDraggingStart = false;
 		isDraggingEnd = false;
 		window.removeEventListener('mousemove', handleMouseMove);
 		window.removeEventListener('mouseup', handleMouseUp);
+		if (onPointsChange) {
+			onPointsChange(startPoint, endPoint);
+		}
 	}
+	//*** end of internal event handling ***/
+
+	//*** start of lifecycle management ***
+	onDestroy(() => {
+		// Clean up event listeners when the component is destroyed
+		window.removeEventListener('mousemove', handleMouseMove);
+		window.removeEventListener('mouseup', handleMouseUp);
+	});
+	//*** end of lifecycle management ***/
 </script>
 
-<div class="magnetic-line-container" style="left: {startPoint.x}px; top: {startPoint.y}px; width: {length}px; transform: rotate({angle}deg);">
+<div
+	class="magnetic-line-container"
+	style="left: {startPoint.x}px; top: {startPoint.y}px; width: {length}px; transform: rotate({angle}deg);"
+>
 	<div class="line"></div>
 	<div
 		class="handle-start"
-		on:mousedown|stopPropagation={(e) => handleMouseDown(e, 'start')}
+		onmousedown={(e) => {
+			e.preventDefault();
+			handleMouseDown(e, 'start');
+		}}
 		role="button"
 		tabindex="0"
 	></div>
 	<div
 		class="handle-end"
-		on:mousedown|stopPropagation={(e) => handleMouseDown(e, 'end')}
+		onmousedown={(e) => {
+			e.preventDefault();
+			handleMouseDown(e, 'end');
+		}}
 		role="button"
 		tabindex="0"
 	></div>
