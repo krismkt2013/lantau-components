@@ -1,7 +1,11 @@
 <script lang="ts">
 	//*** start of imports ***//
 	import '@components/MagneticContainer/MagneticContainer.css';
-	import { SHAPE, COMPONENT_EDGE_SIZE, POSITION_CHANGE_EVENT_KEY } from '@components/MagneticContainer/constance.svelte';
+	import {
+		SHAPE,
+		COMPONENT_EDGE_SIZE,
+		POSITION_CHANGE_EVENT_KEY
+	} from '@components/MagneticContainer/constance.svelte';
 	import Rectangle from '@components/MagneticContainer/shapes/rectangle.svelte';
 	import Circle from '@components/MagneticContainer/shapes/circle.svelte';
 	import Diamond from '@components/MagneticContainer/shapes/diamond.svelte';

@@ -1,4 +1,7 @@
-import type { MagneticContainerProps, MagneticContainerRef } from '@components/MagneticContainer/types.d';
+import type {
+	MagneticContainerProps,
+	MagneticContainerRef
+} from '@components/MagneticContainer/types.d';
 import type { MagneticLineProps } from '@components/MagneticLine/types.d';
 import type { Snippet } from 'svelte';
 

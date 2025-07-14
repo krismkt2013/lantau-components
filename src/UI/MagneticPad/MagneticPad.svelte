@@ -1,12 +1,12 @@
 <script lang="ts">
 	//*** start of imports ***//
 	import '@components/MagneticPad/MagneticPad.css';
-	import type {
-		ClosestContainer,
-		MagneticPadProps,
-	} from '@components/MagneticPad/types.d.ts';
+	import type { ClosestContainer, MagneticPadProps } from '@components/MagneticPad/types.d.ts';
 	import MagneticContainer from '@components/MagneticContainer/MagneticContainer.svelte';
-	import type { MagneticContainerProps, MagneticContainerRef } from '@components/MagneticContainer/types';
+	import type {
+		MagneticContainerProps,
+		MagneticContainerRef
+	} from '@components/MagneticContainer/types';
 	import MagneticLine from '@components/MagneticLine/MagneticLine.svelte';
 	import type { MagneticLineProps, Point } from '@components/MagneticLine/types';
 	//*** end of imports ***//
@@ -71,7 +71,8 @@
 				const rect = point.getBoundingClientRect();
 				const magneticPoint = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
 				const distance = Math.sqrt(
-					Math.pow(changePoint.x - magneticPoint.x, 2) + Math.pow(changePoint.y - magneticPoint.y, 2)
+					Math.pow(changePoint.x - magneticPoint.x, 2) +
+						Math.pow(changePoint.y - magneticPoint.y, 2)
 				);
 
 				if (distance < minMagneticDistance) {

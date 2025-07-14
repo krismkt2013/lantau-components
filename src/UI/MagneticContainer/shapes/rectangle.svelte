@@ -43,9 +43,9 @@
 
 <div class="magnetic-points">
 	{#each points as point, i (point.id)}
-		<div 
-			class="point" 
-			style="top: {point.y}%; left: {point.x}%;" 
+		<div
+			class="point"
+			style="top: {point.y}%; left: {point.x}%;"
 			bind:this={pointsRef[i]}
 			id={point.id}
 			data-point-id={point.id}

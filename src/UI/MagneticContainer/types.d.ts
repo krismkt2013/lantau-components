@@ -35,7 +35,7 @@ export interface MagneticContainerProps {
 	 * The ID of the container.
 	 */
 	id?: string;
-	
+
 	/**
 	 * The content to be rendered inside the container.
 	 */

@@ -29,10 +29,10 @@
 
 <div class="magnetic-points">
 	{#each circlePoints as point, i (point.id)}
-		<div 
-			class="point" 
-			style="top: {point.y}%; left: {point.x}%;" 
-			bind:this={pointsRef[i]} 
+		<div
+			class="point"
+			style="top: {point.y}%; left: {point.x}%;"
+			bind:this={pointsRef[i]}
 			id={point.id}
 			data-point-id={point.id}
 		></div>

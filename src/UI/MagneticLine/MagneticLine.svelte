@@ -3,9 +3,8 @@
 	import '@components/MagneticLine/MagneticLine.css';
 	import type { MagneticLineProps } from './types.d';
 	import { onDestroy, onMount } from 'svelte';
-	import { POSITION_CHANGE_EVENT_KEY } from '@components/MagneticContainer/constance.svelte'
+	import { POSITION_CHANGE_EVENT_KEY } from '@components/MagneticContainer/constance.svelte';
 	//*** end of imports ***//
-
 
 	//*** start of props handing ***//
 	let {
@@ -16,13 +15,13 @@
 		onPointsChange,
 		id,
 		from,
-		to,
+		to
 	}: MagneticLineProps = $props();
 	//*** end of props handing ***//
 
 	//*** start of reactive state ***//
-	let startPoint = $state({x: 0, y: 0});
-	let endPoint = $state({x: 0, y: 0});
+	let startPoint = $state({ x: 0, y: 0 });
+	let endPoint = $state({ x: 0, y: 0 });
 	let isDraggingStart = $state(false);
 	let isDraggingEnd = $state(false);
 	let lineRef: HTMLDivElement | null = null;
@@ -167,7 +166,6 @@
 		isDraggingEnd = false;
 		window.removeEventListener('mousemove', handleMouseMove);
 		window.removeEventListener('mouseup', handleMouseUp);
-		
 	}
 	//*** end of event handling ***//
 
@@ -175,7 +173,7 @@
 	onDestroy(() => {
 		window.removeEventListener('mousemove', handleMouseMove);
 		window.removeEventListener('mouseup', handleMouseUp);
-		
+
 		if (startContainerElement) {
 			startContainerElement.removeEventListener(POSITION_CHANGE_EVENT_KEY, updatePoints);
 		}

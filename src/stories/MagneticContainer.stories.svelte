@@ -42,5 +42,4 @@
 	};
 </script>
 
-<Story name="Complete" {args}>
-</Story>
+<Story name="Complete" {args}></Story>
