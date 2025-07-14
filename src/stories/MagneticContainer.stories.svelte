@@ -1,5 +1,5 @@
 <script module lang="ts">
-	import type { ComponentProps } from '@components/MagneticContainer/types.d';
+	import type { MagneticContainerProps } from '@components/MagneticContainer/types';
 	import MagneticContainer from '@components/MagneticContainer/MagneticContainer.svelte';
 	import { SHAPE } from '@components/MagneticContainer/constance.svelte';
 	import { defineMeta } from '@storybook/addon-svelte-csf';
@@ -33,7 +33,7 @@
 		}
 	});
 
-	const args: ComponentProps = {
+	const args: MagneticContainerProps = {
 		shape: SHAPE.RECTANGLE,
 		initialWidth: 150,
 		initialHeight: 150,
@@ -43,7 +43,4 @@
 </script>
 
 <Story name="Complete" {args}>
-	<div style="padding: 5rem; display: flex; justify-content: center; align-items: center;">
-		<MagneticContainer {...args} />
-	</div>
 </Story>

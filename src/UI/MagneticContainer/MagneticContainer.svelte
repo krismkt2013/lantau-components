@@ -1,14 +1,15 @@
 <script lang="ts">
 	//*** start of imports ***//
 	import '@components/MagneticContainer/MagneticContainer.css';
-	import { SHAPE, COMPONENT_EDGE_SIZE } from '@components/MagneticContainer/constance.svelte';
+	import { SHAPE, COMPONENT_EDGE_SIZE, POSITION_CHANGE_EVENT_KEY } from '@components/MagneticContainer/constance.svelte';
 	import Rectangle from '@components/MagneticContainer/shapes/rectangle.svelte';
 	import Circle from '@components/MagneticContainer/shapes/circle.svelte';
 	import Diamond from '@components/MagneticContainer/shapes/diamond.svelte';
 	import Triangle from '@components/MagneticContainer/shapes/triangle.svelte';
 	import Pentagon from '@components/MagneticContainer/shapes/pentagon.svelte';
-	import type { ComponentProps, Ref } from './types.d';
+	import type { MagneticContainerProps, MagneticContainerRef } from './types.d';
 	import { onDestroy } from 'svelte';
+
 	//*** end of imports ***//
 
 	//*** start of props handing ***//
@@ -17,8 +18,9 @@
 		initialWidth = 150,
 		initialHeight = 150,
 		magnetic = true,
-		id
-	}: ComponentProps = $props();
+		id,
+		children
+	}: MagneticContainerProps = $props();
 	//*** end of props handing ***//
 
 	//*** start of derived state ***//
@@ -48,9 +50,24 @@
 	let resizeStart = { x: 0, y: 0 };
 	let initialSize = { width: 0, height: 0 };
 	let initialPosition = { x: 0, y: 0 };
-	// svelte-ignore non_reactive_update
-	let magneticPointsContainerRef: Ref;
+
+	let magneticPointsContainerRef: MagneticContainerRef | null = $state(null);
 	//*** end of non-reactive state ***//
+
+	//*** start of effects ***//
+	$effect(() => {
+		if (containerRef) {
+			containerRef.dispatchEvent(
+				new CustomEvent(POSITION_CHANGE_EVENT_KEY, {
+					detail: {
+						position: { ...position },
+						size: { ...size }
+					}
+				})
+			);
+		}
+	});
+	//*** end of effects ***//
 
 	//*** start of event handling ***//
 	function handleMouseDown(event: MouseEvent) {
@@ -146,6 +163,9 @@
 	{#if magnetic}
 		<Component bind:this={magneticPointsContainerRef} />
 	{/if}
+	{#if children}
+		{@render children()}
+	{/if}
 </div>
 
-<style src="@component/MagneticContainer/MagneticContainer.css"></style>
+<style src="@components/MagneticContainer/MagneticContainer.css"></style>

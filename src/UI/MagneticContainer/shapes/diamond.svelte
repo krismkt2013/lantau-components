@@ -4,7 +4,7 @@
 	//*** end of imports ***//
 
 	//*** start of state ***//
-	let pointsRef: HTMLDivElement[] = [];
+	let pointsRef: HTMLDivElement[] = $state([]);
 	//*** end of state ***//
 
 	//*** start of derived state ***//
@@ -18,6 +18,7 @@
 		const points: { x: number; y: number; id: string }[] = [];
 		const pointsPerSide = NUM_POINTS / 4;
 
+		let count = 0;
 		for (let i = 0; i < 4; i++) {
 			const startPoint = corners[i];
 			const endPoint = corners[(i + 1) % 4];
@@ -25,7 +26,8 @@
 				const t = j / pointsPerSide;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				points.push({ x, y, id: `d-point-${i}-${j}` });
+				points.push({ x, y, id: `p${count}` });
+				count++;
 			}
 		}
 		return points;
@@ -44,7 +46,9 @@
 		<div
 			class="point"
 			style="top: {point.y}%; left: {point.x}%; z-index: 1;"
+			id={point.id}
 			bind:this={pointsRef[i]}
+			data-point-id={point.id}
 		></div>
 	{/each}
 </div>

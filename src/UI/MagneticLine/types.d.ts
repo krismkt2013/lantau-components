@@ -5,6 +5,14 @@ export interface Point {
 
 export interface MagneticLineProps {
 	/**
+	 * The ID of the component from which the line starts.
+	 */
+	from?: string;
+	/**
+	 * The ID of the component to which the line ends.
+	 */
+	to?: string;
+	/**
 	 * The unique identifier for the magnetic line component.
 	 * This ID is applied to the root `div` element.
 	 * @default undefined
@@ -45,5 +53,5 @@ export interface MagneticLineProps {
 	 * and `endPoint` as arguments.
 	 * @default undefined
 	 */
-	onPointsChange?: (startPoint: Point, endPoint: Point) => void;
+	onPointsChange?: (startPoint: Point, endPoint: Point, change: 'start' | 'end') => void;
 }

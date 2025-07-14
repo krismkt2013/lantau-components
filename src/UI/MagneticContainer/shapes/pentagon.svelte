@@ -4,7 +4,7 @@
 	//*** end of imports ***//
 
 	//*** start of state ***//
-	let pointsRef: HTMLDivElement[] = [];
+	let pointsRef: HTMLDivElement[] = $state([]);
 	//*** end of state ***//
 
 	//*** start of derived state ***//
@@ -20,6 +20,7 @@
 		const pointsPerSide = Math.floor(NUM_POINTS / 5);
 		const remainder = NUM_POINTS % 5;
 
+		let count = 0;
 		for (let i = 0; i < 5; i++) {
 			const startPoint = corners[i];
 			const endPoint = corners[(i + 1) % 5];
@@ -28,7 +29,8 @@
 				const t = j / numSidePoints;
 				const x = startPoint.x + t * (endPoint.x - startPoint.x);
 				const y = startPoint.y + t * (endPoint.y - startPoint.y);
-				newPoints.push({ x, y, id: `p-point-${i}-${j}` });
+				newPoints.push({ x, y, id: `p${count}` });
+				count++;
 			}
 		}
 		return newPoints;
@@ -44,6 +46,12 @@
 
 <div class="magnetic-points">
 	{#each points as point, i (point.id)}
-		<div class="point" style="top: {point.y}%; left: {point.x}%;" bind:this={pointsRef[i]}></div>
+		<div 
+			class="point" 
+			style="top: {point.y}%; left: {point.x}%;" 
+			id={point.id}
+			bind:this={pointsRef[i]}
+			data-point-id={point.id}
+		></div>
 	{/each}
 </div>

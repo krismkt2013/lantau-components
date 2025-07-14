@@ -36,18 +36,17 @@
 .handle-start,
 .handle-end {
 	position: absolute;
-	width: 40px;
-	height: 40px;
-	background-color: transparent;
+	width: 20px;
+	height: 20px;
+	/* background-color: rgba(0, 123, 255, 0.5); */
 	z-index: 2;
 	border-radius: 50%;
-	top: -20px;
+	/* border: 2px solid #007bff; */
+	transform: translate(-50%, -50%);
+	cursor: grab;
 }
 
-.handle-start {
-	left: -20px;
-}
-
-.handle-end {
-	right: -20px;
+.handle-start:hover,
+.handle-end:hover {
+	background-color: rgba(227, 232, 237, 0.8);
 }

@@ -1,11 +1,12 @@
 import type { SHAPE } from './constance.svelte';
+import type { Snippet } from 'svelte';
 
 export interface Point {
 	x: number;
 	y: number;
 }
 
-export interface ComponentProps {
+export interface MagneticContainerProps {
 	/**
 	 * The shape of the container.
 	 * @default SHAPE.RECTANGLE
@@ -34,6 +35,11 @@ export interface ComponentProps {
 	 * The ID of the container.
 	 */
 	id?: string;
+	
+	/**
+	 * The content to be rendered inside the container.
+	 */
+	children?: Snippet;
 }
 
-export type Ref = { getPoints: () => HTMLDivElement[] };
+export type MagneticContainerRef = { getPoints: () => HTMLDivElement[] };
