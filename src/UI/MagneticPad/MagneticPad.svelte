@@ -7,6 +7,7 @@
 		MagneticContainerProps,
 		MagneticContainerRef
 	} from '@components/MagneticContainer/types';
+	import { MAGETIC_DISTANCE } from '@components/MagneticPad/constance.svelte';
 	import MagneticLine from '@components/MagneticLine/MagneticLine.svelte';
 	import type { MagneticLineProps, Point } from '@components/MagneticLine/types';
 	//*** end of imports ***//
@@ -44,6 +45,8 @@
 		// Find the closest container
 		let closestContainer: ClosestContainer | null = null;
 		let minDistance = Infinity;
+		let closestPoint: HTMLDivElement | null = null;
+		let minMagneticDistance = Infinity;
 
 		for (const containerId in containerRefs) {
 			const container = containerRefs[containerId];
@@ -62,10 +65,9 @@
 			}
 		}
 
+		// Find the closest magnetic point in the closest container
 		if (closestContainer) {
 			const magneticPoints = closestContainer.container.getPoints();
-			let closestPoint: HTMLDivElement | null = null;
-			let minMagneticDistance = Infinity;
 
 			for (const point of magneticPoints) {
 				const rect = point.getBoundingClientRect();
@@ -80,22 +82,27 @@
 					closestPoint = point;
 				}
 			}
+		}
 
-			if (minMagneticDistance <= 10) {
-				const lineIndex = lines.findIndex((line) => line.id === id);
-				if (lineIndex !== -1) {
-					const updatedLines = [...lines];
-					const lineToUpdate = { ...updatedLines[lineIndex] };
-					const pointId = closestPoint?.getAttribute('id') || '';
-					if (change === 'start') {
-						lineToUpdate.from = `${closestContainer.id}:${pointId}`;
-					} else {
-						lineToUpdate.to = `${closestContainer.id}:${pointId}`;
-					}
-					updatedLines[lineIndex] = lineToUpdate;
-					lines = updatedLines;
-				}
+		// Update the line's start or end point based on the closest container and point
+		const lineIndex = lines.findIndex((line) => line.id === id);
+		if (lineIndex !== -1) {
+			const updatedLines = [...lines];
+			const lineToUpdate = { ...updatedLines[lineIndex] };
+			const pointId = closestPoint?.getAttribute('id');
+			if (change === 'start') {
+				lineToUpdate.from =
+					minMagneticDistance <= MAGETIC_DISTANCE && closestContainer && pointId
+						? `${closestContainer.id}:${pointId}`
+						: undefined;
+			} else {
+				lineToUpdate.to =
+					minMagneticDistance <= MAGETIC_DISTANCE && closestContainer && pointId
+						? `${closestContainer.id}:${pointId}`
+						: undefined;
 			}
+			updatedLines[lineIndex] = lineToUpdate;
+			lines = updatedLines;
 		}
 	}
 	//*** end of event handling ***//
